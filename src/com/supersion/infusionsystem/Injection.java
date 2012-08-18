@@ -30,11 +30,11 @@ public class Injection extends Activity {
 	private EditText serialText;
 	private EditText identifierText;
 	
-	private TextView name;
-	private TextView gender;
-	private TextView age;
-	private TextView seatNum;
-	private TextView diagnose;
+	private TextView name = null;
+	private TextView gender = null;
+	private TextView age = null;
+	private TextView seatNum = null;
+	private TextView diagnose = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
