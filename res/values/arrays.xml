@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="roles">
+        <item>系统管理员</item>
+        <item>门诊医生操作员</item>
+        <item>角色3</item>
+    </string-array>
+    <string-array name="departments">
+        <item>泰州市人民医院</item>
+        <item>泰州市人民医院南院</item>
+        <item>泰州市人民医院北院</item>
+    </string-array>
+</resources>
