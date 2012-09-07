@@ -166,9 +166,9 @@ public class MainActivity extends Activity {
 
 			public void onItemSelected(AdapterView<?> parent, View view,
 					int position, long id) {
-				//String role = roleSpinner.getSelectedItem().toString();
+				String role = roleSpinner.getSelectedItem().toString();
 				
-				//nurse.setRoleName(role);
+				nurse.setRoleName(role);
 			}
 
 			public void onNothingSelected(AdapterView<?> arg0) {
@@ -180,8 +180,8 @@ public class MainActivity extends Activity {
 
 			public void onItemSelected(AdapterView<?> parent, View view,
 					int position, long id) {
-				//String department = departmentSpinner.getSelectedItem().toString();
-				//nurse.setUnitName(department);
+				String department = departmentSpinner.getSelectedItem().toString();
+				nurse.setUnitName(department);
 			}
 
 			public void onNothingSelected(AdapterView<?> arg0) {

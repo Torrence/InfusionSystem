@@ -16,6 +16,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;  
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
@@ -65,6 +67,24 @@ public class Injection extends Activity {
 		 * initialize the table with four rows sample data.
 		 */
 		this.initListView();
+		
+		serialText.addTextChangedListener(new TextWatcher(){
+
+			public void afterTextChanged(Editable s) {
+				identifierText.requestFocus();
+			}
+
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				
+			}
+
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				
+			}
+			
+		});
 		
 		serialText.setOnFocusChangeListener(new OnFocusChangeListener(){
 
