@@ -1,17 +1,19 @@
-package com.supersion.infusionsystem;
+package cn.superion.infusion;
 
 import java.util.ArrayList;  
 import java.util.List;
 
-import com.superion.infusionsystem.util.TableAdapter;
-import com.superion.infusionsystem.util.TableAdapter.TableCell;
-import com.superion.infusionsystem.util.TableAdapter.TableRow;  
-import com.supersion.infusionsystem.internet.IInfusionInfo;
-import com.supersion.infusionsystem.internet.IUserValidation;
-import com.supersion.infusionsystem.internet.InfusionInfoImpl;
-import com.supersion.infusionsystem.internet.UserValidationImpl;
-import com.supersion.infusionsystem.model.Infusion;
-import com.supersion.infusionsystem.model.Patient;
+import cn.superion.infusion.internet.IInfusionInfo;
+import cn.superion.infusion.internet.IUserValidation;
+import cn.superion.infusion.internet.InfusionInfoImpl;
+import cn.superion.infusion.internet.UserValidationImpl;
+import cn.superion.infusion.model.Infusion;
+import cn.superion.infusion.model.Patient;
+import cn.superion.infusion.util.TableAdapter;
+import cn.superion.infusion.util.TableAdapter.TableCell;
+import cn.superion.infusion.util.TableAdapter.TableRow;
+
+import com.supersion.infusionsystem.R;
 
 import android.app.Activity;  
 import android.os.Bundle;  
