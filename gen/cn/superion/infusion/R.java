@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.supersion.infusionsystem;
+package cn.superion.infusion;
 
 public final class R {
     public static final class array {

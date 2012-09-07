@@ -1,5 +1,5 @@
 /** Automatically generated file. DO NOT MODIFY */
-package com.supersion.infusionsystem;
+package cn.superion.infusion;
 
 public final class BuildConfig {
     public final static boolean DEBUG = true;

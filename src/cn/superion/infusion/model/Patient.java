@@ -5,6 +5,8 @@ public class Patient {
 	private String patientName;
 	private String sex;
 	private String age;
+	private String seatNo;
+	private String diseaseName;
 	
 	
 	public String getPatientId() {
@@ -30,5 +32,17 @@ public class Patient {
 	}
 	public void setAge(String age) {
 		this.age = age;
+	}
+	public String getSeatNo() {
+		return seatNo;
+	}
+	public void setSeatNo(String seatNo) {
+		this.seatNo = seatNo;
+	}
+	public String getDiseaseName() {
+		return diseaseName;
+	}
+	public void setDiseaseName(String diseaseName) {
+		this.diseaseName = diseaseName;
 	}
 }

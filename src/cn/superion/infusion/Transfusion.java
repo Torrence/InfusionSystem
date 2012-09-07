@@ -1,6 +1,6 @@
 package cn.superion.infusion;
 
-import com.supersion.infusionsystem.R;
+import cn.superion.infusion.R;
 
 import android.app.TabActivity;
 import android.content.Intent;

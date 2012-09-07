@@ -1,7 +1,6 @@
 package cn.superion.infusion.internet;
 
 import cn.superion.infusion.model.Nurse;
-import cn.superion.infusion.model.Patient;
 
 public interface IUserValidation {
 	
@@ -12,6 +11,4 @@ public interface IUserValidation {
 	
 	public Nurse findRoleAndUnits(String userCode);
 	
-	public Patient findRegisterInfo(String patientId);
-
 }

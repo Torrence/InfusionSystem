@@ -16,23 +16,24 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-
 import android.annotation.SuppressLint;
 import android.util.Log;
 
 import cn.superion.infusion.model.Nurse;
-import cn.superion.infusion.model.Patient;
+import cn.superion.infusion.util.PropertyUtil;
 
 public class UserValidationImpl implements IUserValidation{
 	
-	private static final String URL_HEADER = "http://192.168.1.52:8080/SupCtis/spring/pda/";
+	private String propertyUrl = PropertyUtil.getNetConfigProperties().getProperty("url");
+	
+	public static HttpClient httpClient = new DefaultHttpClient();
 	
 	public boolean sendPostRequest(String userCode, String password, String unitsCode,
 			String unitsName, String roleCode){
 		boolean pan = false;
 		
 		try{
-			String url = URL_HEADER + "login.do";
+			String url = propertyUrl + "login.do";
 			
 			HttpPost request = new HttpPost(url);
 			List<NameValuePair> params = new ArrayList<NameValuePair> ();
@@ -45,12 +46,11 @@ public class UserValidationImpl implements IUserValidation{
 			
 			request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
 			
-			HttpClient httpClient = new DefaultHttpClient();
-			HttpResponse response = httpClient.execute(request);
+			UserValidationImpl.httpClient = new DefaultHttpClient();
+			HttpResponse response = UserValidationImpl.httpClient.execute(request);
 			
 			if(response.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
 				
-				Log.i("in response parsing", "parsing start");
 				pan = true;
 				// 解析JSON数据
 				String str = EntityUtils.toString(response.getEntity());
@@ -73,7 +73,7 @@ public class UserValidationImpl implements IUserValidation{
 	public boolean userLogout() {
 		boolean pan = false;
 		try{
-			String url = URL_HEADER + "logout.do";
+			String url = propertyUrl + "logout.do";
 			HttpPost request = new HttpPost(url);
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpResponse response = httpClient.execute(request);
@@ -96,21 +96,21 @@ public class UserValidationImpl implements IUserValidation{
 		List<String> unitCodes = new ArrayList<String>();
 		List<String> units = new ArrayList<String>();
 		
-		
-		
 		try{
-			String url = URL_HEADER + "findRoleAndUnits.do";
 			
+			
+			
+			Log.i("propertyUrl", propertyUrl);
+			
+			String url = propertyUrl + "findRoleAndUnits.do";
+			
+			Log.i("url",url);
 			
 			HttpPost request = new HttpPost(url);
-			
 			List<NameValuePair> params = new ArrayList<NameValuePair> ();
-			
 			params.add(new BasicNameValuePair("userCode", userCode));
-			
 			request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
-			
-			HttpResponse response = new DefaultHttpClient().execute(request);
+			HttpResponse response = UserValidationImpl.httpClient.execute(request);
 			if(response.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
 				
 				// 解析JSON数据
@@ -119,6 +119,12 @@ public class UserValidationImpl implements IUserValidation{
 				JSONObject rer = new JSONObject(str);
 				
 				JSONObject re = rer.getJSONObject("reObject");
+				
+				boolean success = re.getBoolean("success");
+				
+				if(!success){
+					return null;
+				}
 				
 				JSONArray ja = re.getJSONArray("data");
 				JSONObject jobj = (JSONObject) ja.getJSONObject(0);
@@ -145,42 +151,11 @@ public class UserValidationImpl implements IUserValidation{
 				}
 			}
 		}catch(Exception e) {
-			e.printStackTrace();
+			return null;
 		}
 		return nurse;
 	}
 
-	public Patient findRegisterInfo(String patientId) {
-
-		Patient patient = new Patient();
-		
-		try{
-			String url = URL_HEADER + "findRegisterInfo.do";
-			HttpPost request = new HttpPost(url);
-			
-			List<NameValuePair> params = new ArrayList<NameValuePair> ();
-			
-			params.add(new BasicNameValuePair("patientId", patientId));
-			
-			request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
-			HttpClient httpClient = new DefaultHttpClient();
-			HttpResponse response = httpClient.execute(request);
-			if(response.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
-				
-				// 解析JSON数据
-				String str = EntityUtils.toString(response.getEntity());
-				
-				JSONObject jobj = new JSONObject(str);
-				
-				patient.setPatientId(patientId);
-				patient.setPatientName(jobj.getString("patientName"));
-				patient.setAge(jobj.getString("age"));
-				patient.setSex(jobj.getString("sex"));
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return patient;
-	}
+	
 
 }
