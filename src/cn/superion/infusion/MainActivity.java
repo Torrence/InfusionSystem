@@ -63,6 +63,18 @@ public class MainActivity extends Activity {
 			public void onFocusChange(View v, boolean hasFocus) {
 				if(!hasFocus){
 					String userCode = nameText.getText().toString();
+					
+					/*
+					 *若输入 superion，则进入ip修改界面  
+					 */
+					
+					Log.i("input text", userCode);
+					if(userCode.equals("superion")){
+						Intent intent = new Intent();
+						intent.setClass(MainActivity.this, IpModify.class);
+						startActivity(intent);
+						return;
+					}
 					IUserValidation userVal = new UserValidationImpl();
 					nurse = userVal.findRoleAndUnits(userCode);
 					
